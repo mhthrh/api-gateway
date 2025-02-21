@@ -1,0 +1,4 @@
+1- https <==> rest
+2- communicates with all services to complete response
+3- check authentication, authorization, and level access
+4- check access token
