@@ -17,7 +17,7 @@ import (
 )
 
 const (
-	configPath   = "/customer-service/config"
+	configPath   = "/api-gateway/config"
 	configName   = "config.json"
 	readTimeOut  = 10 * time.Second
 	WriteTimeOut = 10 * time.Second
