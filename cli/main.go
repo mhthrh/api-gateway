@@ -69,13 +69,13 @@ func main() {
 	}
 	go func() {
 		if e := httpRest.ListenAndServe(); e != nil {
-			log.Fatalf("failed to serve: %v \n", err)
+			log.Fatalf("failed to serve http server: %v \n", err)
 			return
 		}
 	}()
 	go func() {
 		if e := socket.ListenAndServe(); e != nil {
-			log.Fatalf("failed to serve: %v \n", err)
+			log.Fatalf("failed to serve websocket server: %v \n", err)
 			return
 		}
 	}()

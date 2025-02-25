@@ -5,7 +5,7 @@ go 1.24.0
 require (
 	github.com/gin-gonic/gin v1.10.0
 	github.com/gorilla/websocket v1.5.3
-	github.com/mhthrh/GoNest v0.0.0-20250224203134-e2001dfdfe9a
+	github.com/mhthrh/GoNest v0.0.0-20250225194726-1340ad1ec854
 	go.uber.org/zap v1.27.0
 )
 

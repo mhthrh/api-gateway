@@ -29,7 +29,9 @@ func (t Transport) Http(ctx context.Context) http.Handler {
 	//router.Use(Controller.Middleware)
 	r.Use(gin.Recovery())
 
-	r.POST("/login", nil)
+	r.Group("customer")
+	r.POST("/create", e.CustomerRegister)
+
 	r.NoRoute(e.NotFound)
 	return r
 }

@@ -46,6 +46,10 @@ github.com/mattn/go-isatty v0.0.20 h1:xfD0iDuEKnDkl03q4limB+vH+GxLEtL/jb4xVJSWWE
 github.com/mattn/go-isatty v0.0.20/go.mod h1:W+V8PltTTMOvKvAeJH7IuucS94S2C6jfK/D7dTCTo3Y=
 github.com/mhthrh/GoNest v0.0.0-20250224203134-e2001dfdfe9a h1:Cqr6gkt5TvyBtC8np9tH0cdMXirCZm0m2RA+XrfrkJ8=
 github.com/mhthrh/GoNest v0.0.0-20250224203134-e2001dfdfe9a/go.mod h1:8y4ttKovWeWOpWe97BZY1bjU1azeBrAp17aprVrP3Ko=
+github.com/mhthrh/GoNest v0.0.0-20250225191545-25c35ea246a5 h1:QVSCrxZIrsUbsMx2/UhoYqM39G2qkXlc7nIeFURB+BM=
+github.com/mhthrh/GoNest v0.0.0-20250225191545-25c35ea246a5/go.mod h1:8y4ttKovWeWOpWe97BZY1bjU1azeBrAp17aprVrP3Ko=
+github.com/mhthrh/GoNest v0.0.0-20250225194726-1340ad1ec854 h1:QZ2I828FKKaIQyus0HreguAFCa9DaSBZwsFB6U6X12E=
+github.com/mhthrh/GoNest v0.0.0-20250225194726-1340ad1ec854/go.mod h1:o5Ns7bhR4NPMi0GluoPoNYuxGyOFINkcGTp36b8zQzM=
 github.com/modern-go/concurrent v0.0.0-20180228061459-e0a39a4cb421/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd h1:TRLaZ9cD/w8PVh93nsPXa1VrQ6jlwL5oN8l14QlcNfg=
 github.com/modern-go/concurrent v0.0.0-20180306012644-bacd9c7ef1dd/go.mod h1:6dJC0mAP4ikYIbvyc7fijjWJddQyLn8Ig3JB5CqoB9Q=

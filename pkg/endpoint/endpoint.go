@@ -4,9 +4,10 @@ import (
 	"context"
 	"github.com/gin-gonic/gin"
 	"github.com/gorilla/websocket"
+	cTransport "github.com/mhthrh/GoNest/model/transport"
+	convert "github.com/mhthrh/GoNest/pkg/util/convertor"
 	"log"
 	"net/http"
-	"time"
 )
 
 type Endpoint struct {
@@ -23,14 +24,17 @@ func NewEndpoint() *Endpoint {
 	return &Endpoint{}
 }
 
+func (e Endpoint) CustomerRegister(c *gin.Context) {
+	// decode
+	// do process
+	// encode
+	// write response
+}
+
 func (e Endpoint) NotFound(context *gin.Context) {
-	context.JSON(http.StatusNotFound, struct {
-		Time        time.Time `json:"time"`
-		Description string    `json:"description"`
-	}{
-		Time:        time.Now(),
-		Description: "Workers are working, coming soon!!!",
-	})
+	j := convert.Json{}
+	res, _ := j.Marshal(*cTransport.NotFound(nil))
+	context.AbortWithStatusJSON(http.StatusNotFound, res)
 }
 
 func (e Endpoint) Websocket(ctx *gin.Context) {
