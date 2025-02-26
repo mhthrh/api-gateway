@@ -8,13 +8,15 @@ import (
 )
 
 var (
-	e *endpoint.Endpoint
+	trs Trans
+	e   endpoint.Endpoint
 )
 
 func init() {
 	gin.SetMode(gin.TestMode)
 	gin.DisableConsoleColor()
-	e = endpoint.NewEndpoint()
+	trs = Trans{}
+	e = endpoint.Endpoint{}
 }
 
 type Transport struct {
@@ -28,19 +30,20 @@ func (t Transport) Http(ctx context.Context) http.Handler {
 	r := gin.New()
 	//router.Use(Controller.Middleware)
 	r.Use(gin.Recovery())
+	cGroup := r.Group("customer")
 
-	r.Group("customer")
-	r.POST("/create", e.CustomerRegister)
+	cGroup.POST("/create", e.CustomerRegister)
 
-	r.NoRoute(e.NotFound)
+	r.NoRoute(trs.NotFound)
 	return r
 }
 
 func (t Transport) WebSkt(ctx context.Context) http.Handler {
 	router := gin.New()
+
 	router.Use(gin.Recovery())
-	router.GET("/x-bank/ws", e.Websocket)
-	router.NoRoute(e.NotFound)
+	router.GET("/x-bank/ws", trs.Websocket)
+	router.NoRoute(trs.NotFound)
 
 	return router
 }

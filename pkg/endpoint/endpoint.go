@@ -1,91 +1,26 @@
 package endpoint
 
 import (
-	"context"
+	"api-gateway/pkg/service"
+	"api-gateway/pkg/transport/customer/decode"
+	"api-gateway/pkg/transport/customer/encode"
+	"fmt"
 	"github.com/gin-gonic/gin"
-	"github.com/gorilla/websocket"
-	cTransport "github.com/mhthrh/GoNest/model/transport"
-	convert "github.com/mhthrh/GoNest/pkg/util/convertor"
-	"log"
-	"net/http"
 )
 
 type Endpoint struct {
-}
-
-var (
-	upgrade websocket.Upgrader
-)
-
-func init() {
-	upgrade = websocket.Upgrader{}
-}
-func NewEndpoint() *Endpoint {
-	return &Endpoint{}
+	d decode.Decode
+	e encode.Encode
+	g service.Grpc
 }
 
 func (e Endpoint) CustomerRegister(c *gin.Context) {
-	// decode
-	// do process
-	// encode
+	customer, err := e.d.RegisterCustomer(c.Request.Body)
+	fmt.Println(customer, err)
+	a, b := e.g.Register()
+	fmt.Println(a, b)
+	code, res := e.e.RegisterCustomer(a, nil)
+	c.JSON(code, res)
+	c.Done()
 	// write response
-}
-
-func (e Endpoint) NotFound(context *gin.Context) {
-	j := convert.Json{}
-	res, _ := j.Marshal(*cTransport.NotFound(nil))
-	context.AbortWithStatusJSON(http.StatusNotFound, res)
-}
-
-func (e Endpoint) Websocket(ctx *gin.Context) {
-	toWs := make(chan string)
-	fromWs := make(chan string)
-	cntx, cancel := context.WithCancel(context.Background())
-	defer cancel()
-	w, r := ctx.Writer, ctx.Request
-
-	//check authentication
-	upgrade.CheckOrigin = func(r *http.Request) bool {
-		return true
-	}
-	wSc, err := upgrade.Upgrade(w, r, nil)
-	if err != nil {
-		ctx.JSON(http.StatusUpgradeRequired, "connote upgrade connection to websocket")
-		return
-	}
-	go read(cntx, wSc, fromWs)
-	go write(cntx, wSc, toWs)
-
-}
-
-func read(ctx context.Context, c *websocket.Conn, ch chan string) {
-	for {
-		select {
-		case <-ctx.Done():
-			return
-		default:
-			_, message, err := c.ReadMessage()
-			if err != nil {
-				log.Printf("read: %v", err)
-				return
-			}
-			ch <- string(message)
-		}
-	}
-}
-func write(ctx context.Context, c *websocket.Conn, ch chan string) {
-	for {
-		select {
-		case <-ctx.Done():
-			return
-		case msg := <-ch:
-			//string response type is 1
-			err := c.WriteMessage(1, []byte(msg))
-			if err != nil {
-				log.Printf("read: %v", err)
-				return
-			}
-		}
-	}
-
 }
